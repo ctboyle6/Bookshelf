@@ -32,28 +32,39 @@ const DUMMY_BOOKS = [
 function App() {
   const [searchBooks, setSearchBooks] = useState([]);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+  const [error, setError] = useState(null);
 
   const fetchBooks = async (searchInput) => {
-    const searchResponse = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(
-        searchInput
-      )}`
-    );
+    setError(null);
+    try {
+      const searchResponse = await fetch(
+        `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(
+          searchInput
+        )}`
+      );
+      if (!searchResponse.ok) {
+        throw new Error()
+      }
 
-    const dataResponse = await searchResponse.json();
-    const transformedBooks = dataResponse.items.map((bookData) => {
-      return {
-        id: bookData.id,
-        title: bookData.volumeInfo.title,
-        authors: bookData.volumeInfo.authors,
-        description: bookData.volumeInfo.description,
-        pageCount: bookData.volumeInfo.pageCount,
-        bookCover: bookData.volumeInfo.imageLinks.thumbnail
-      };
-    });
-    setSearchBooks(transformedBooks);
+      const dataResponse = await searchResponse.json();
 
-    setIsSearchModalOpen(true);
+      const transformedBooks = dataResponse.items.map((bookData) => {
+        return {
+          id: bookData.id,
+          title: bookData.volumeInfo.title,
+          authors: bookData.volumeInfo.authors,
+          description: bookData.volumeInfo.description,
+          pageCount: bookData.volumeInfo.pageCount,
+          bookCover: bookData.volumeInfo.imageLinks.thumbnail
+        };
+      });
+      setSearchBooks(transformedBooks);
+
+      setIsSearchModalOpen(true);
+    } catch (err) {
+      setError(err);
+      alert(err.message + ' Please try another search query.');
+    }
   };
 
   const searchSubmitHandler = (enteredText) => {
