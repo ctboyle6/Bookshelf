@@ -1,0 +1,10 @@
+.bookshelf {
+  display: inline-block;
+  width: 70vh;
+}
+
+.row {
+  margin: 16px;
+  border-bottom: 1px solid grey;
+  display: flex;
+}

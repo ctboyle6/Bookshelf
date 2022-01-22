@@ -1,0 +1,12 @@
+.book {
+  border: 1px dotted lightgray;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+}
+
+.book div {
+  font-size: 12px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
