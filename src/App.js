@@ -11,21 +11,25 @@ const DUMMY_BOOKS = [
     id: 1,
     title: "book1",
     pageCount: 100,
+    bookCover: "../public/logo512.png",
   },
   {
     id: 2,
     title: "book2",
     pageCount: 200,
+    bookCover: "../public/logo512.png",
   },
   {
     id: 3,
     title: "book3",
     pageCount: 300,
+    bookCover: "../public/logo512.png",
   },
   {
     id: 4,
     title: "book4",
     pageCount: 400,
+    bookCover: "../public/logo512.png",
   },
 ];
 
