@@ -48,6 +48,7 @@ function App() {
         authors: bookData.volumeInfo.authors,
         description: bookData.volumeInfo.description,
         pageCount: bookData.volumeInfo.pageCount,
+        bookCover: bookData.volumeInfo.imageLinks.thumbnail
       };
     });
     setSearchBooks(transformedBooks);

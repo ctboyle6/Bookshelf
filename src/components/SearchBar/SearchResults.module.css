@@ -1,0 +1,21 @@
+.result {
+  margin: 32px;
+  display: flex;
+}
+
+.left {
+    align-items: center;
+    margin: auto 14px;
+    display: flex;
+    flex-direction: column;
+}
+
+.left img {
+  margin: 12px auto;
+}
+
+.right p {
+  max-height: 300px;
+  overflow: auto;
+  font-size: 0.8rem;
+}
