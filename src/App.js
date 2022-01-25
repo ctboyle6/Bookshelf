@@ -36,10 +36,10 @@ const DUMMY_BOOKS = [
 function App() {
   const [searchBooks, setSearchBooks] = useState([]);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null);
 
   const fetchBooks = async (searchInput) => {
-    setError(null);
+    // setError(null);
     try {
       const searchResponse = await fetch(
         `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(
@@ -66,7 +66,7 @@ function App() {
 
       setIsSearchModalOpen(true);
     } catch (err) {
-      setError(err);
+      // setError(err);
       alert(err.message + ' Please try another search query.');
     }
   };

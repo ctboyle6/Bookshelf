@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Button from "../UI/Button";
 import classes from "./SearchBar.module.css";
 
 const SearchBar = (props) => {
@@ -36,7 +37,7 @@ const SearchBar = (props) => {
           onBlur={searchBlurHandler}
           value={enteredText}
         />
-        <button disabled={!enteredTextValid} type="submit">Enter</button>
+        <Button disabled={!enteredTextValid} type="submit">Enter</Button>
         {textHasErrors && <p className={classes["error-text"]}>Search term cannot be empty, cmon!</p>}
       </div>
     </form>

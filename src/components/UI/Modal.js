@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
+import Button from "./Button";
 import classes from "./Modal.module.css";
 
 const Backdrop = (props) => {
@@ -9,7 +10,7 @@ const Backdrop = (props) => {
 const ModalOverlay = (props) => {
   return (
     <div className={classes.modal}>
-      <button onClick={props.onCloseModal}>Close</button>
+      <Button onClick={props.onCloseModal}>Close</Button>
       <div className={classes.content}>{props.children}</div>
     </div>
   );
