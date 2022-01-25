@@ -3,7 +3,7 @@
   padding: 24px;
   background: rgb(141, 141, 141);
   border-radius: 24px;
-  width: 50%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,7 +15,7 @@
 }
 
 .form input {
-  width: 12rem;
+  width: 16rem;
   border-radius: 5px;
   border: 1px solid #ccc;
   font: inherit;
@@ -25,8 +25,8 @@
 .form button {
   font: inherit;
   cursor: pointer;
-  background-color: #754200;
-  border: 1px solid #6d3e00;
+  background-color: #2c962c;
+  border: 1px solid #2c962c;
   color: white;
   padding: 0.25rem 2rem;
   border-radius: 20px;
@@ -35,6 +35,19 @@
 
 .form button:hover,
 .form button:active {
-  background-color: #804800;
-  border-color: #804800;
+  background-color: #30a830;
+  border-color: #30a830;
+}
+
+button:disabled,
+button:disabled:hover,
+button:disabled:active {
+  background-color: #ccc;
+  border-color: #ccc;
+  color: #292929;
+  cursor: not-allowed
+}
+
+.error-text {
+  color: #c21717;
 }

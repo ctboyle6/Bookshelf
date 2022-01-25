@@ -3,15 +3,26 @@ import classes from "./SearchBar.module.css";
 
 const SearchBar = (props) => {
   const [enteredText, setEnteredText] = useState("");
+  const [enteredTextTouched, setEnteredTextTouched] = useState(false);
 
-  const searchInputChangeHandler = (event) => {
+  const enteredTextValid = enteredText.trim() !== "";
+  const textHasErrors = !enteredTextValid && enteredTextTouched;
+
+  const searchChangeHandler = (event) => {
     setEnteredText(event.target.value);
   };
+
+  const searchBlurHandler = () => {
+    setEnteredTextTouched(true);
+  }
 
   const submitHandler = (event) => {
     event.preventDefault();
 
-    props.onSubmitSearch(enteredText);
+    props.onSubmitSearch(enteredText); //submit
+
+    setEnteredText(""); // reset
+    setEnteredTextTouched(false)
   };
 
   return (
@@ -21,10 +32,12 @@ const SearchBar = (props) => {
         <input
           id="search-bar"
           type="text"
-          onChange={searchInputChangeHandler}
+          onChange={searchChangeHandler}
+          onBlur={searchBlurHandler}
           value={enteredText}
         />
-        <button type="submit">Enter</button>
+        <button disabled={!enteredTextValid} type="submit">Enter</button>
+        {textHasErrors && <p className={classes["error-text"]}>Search term cannot be empty, cmon!</p>}
       </div>
     </form>
   );
