@@ -12,6 +12,7 @@ body {
   border-radius: 24px;
   color: rgb(233, 233, 233);
   font-family: sans-serif;
+  box-shadow: 2px 2px 18px rgba(40, 40, 40, 0.6);
 }
 
 .app h1 {

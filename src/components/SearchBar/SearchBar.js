@@ -22,7 +22,7 @@ const SearchBar = (props) => {
 
     props.onSubmitSearch(enteredText); //submit
 
-    setEnteredText(""); // reset
+    // setEnteredText(""); // reset
     setEnteredTextTouched(false)
   };
 
