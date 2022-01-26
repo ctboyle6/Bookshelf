@@ -9,7 +9,7 @@ const Book = (props) => {
         width: `${props.pages * 0.3}px`,
       }}
     >
-      <img src={"http://books.google.com/books/content?id=XiAYDAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"} alt="book cover" />
+      <img src={props.bookCover} alt="book cover" />
     </div>
   );
 };

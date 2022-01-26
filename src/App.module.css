@@ -1,14 +1,15 @@
 body {
-  background: rgb(32, 32, 32);
+  background: rgb(210, 228, 189);
 }
 
 .app {
   text-align: center;
   margin: 0 auto;
-  background: rgb(59, 59, 59);
+  margin-top: 18px;
+  background: rgb(57, 61, 51);
   height: 95vh;
   width: 95vh;
-  border-radius: 32px;
+  border-radius: 24px;
   color: rgb(233, 233, 233);
   font-family: sans-serif;
 }

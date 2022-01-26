@@ -6,36 +6,45 @@ import Bookshelf from "./components/Bookshelf/Bookshelf";
 import SearchBar from "./components/SearchBar/SearchBar";
 import SearchResults from "./components/SearchBar/SearchResults";
 
-const DUMMY_BOOKS = [
-  {
-    id: 1,
-    title: "book1",
-    pageCount: 100,
-    bookCover: "../public/logo512.png",
-  },
-  {
-    id: 2,
-    title: "book2",
-    pageCount: 200,
-    bookCover: "../public/logo512.png",
-  },
-  {
-    id: 3,
-    title: "book3",
-    pageCount: 300,
-    bookCover: "../public/logo512.png",
-  },
-  {
-    id: 4,
-    title: "book4",
-    pageCount: 400,
-    bookCover: "../public/logo512.png",
-  },
-];
+// const DUMMY_BOOKS = [
+//   {
+//     id: 1,
+//     title: "book1",
+//     pageCount: 100,
+//     bookCover: "../public/logo512.png",
+//   },
+//   {
+//     id: 2,
+//     title: "book2",
+//     pageCount: 200,
+//     bookCover: "../public/logo512.png",
+//   },
+//   {
+//     id: 3,
+//     title: "book3",
+//     pageCount: 300,
+//     bookCover: "../public/logo512.png",
+//   },
+//   {
+//     id: 4,
+//     title: "book4",
+//     pageCount: 400,
+//     bookCover: "../public/logo512.png",
+//   },
+// ];
 
 function App() {
   const [searchBooks, setSearchBooks] = useState([]);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+  const [bookshelfBooks, setBookshelfBooks] = useState([
+    {
+      id: 1,
+      title: "book1",
+      pageCount: 300,
+      bookCover:
+        "http://books.google.com/books/content?id=XiAYDAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    },
+  ]);
   // const [error, setError] = useState(null);
 
   const fetchBooks = async (searchInput) => {
@@ -67,7 +76,7 @@ function App() {
       setIsSearchModalOpen(true);
     } catch (err) {
       // setError(err);
-      alert(err.message + ' Please try another search query.');
+      alert(err.message + ' \nPlease try another search query.');
     }
   };
 
@@ -79,6 +88,14 @@ function App() {
     setIsSearchModalOpen(false);
   };
 
+  const AddToBookshelfHandler = (bookId) => {
+    const selectedBook = searchBooks.find(book => book.id === bookId);
+
+    console.log(selectedBook);
+    setBookshelfBooks(prevBooks => [...prevBooks, selectedBook]);
+    setIsSearchModalOpen(false);
+  };
+
   return (
     <div className={classes.app}>
       <h1>Bookshelf</h1>
@@ -87,9 +104,10 @@ function App() {
         <SearchResults
           searchBooks={searchBooks}
           onCloseModal={closeModalHandler}
+          onAddToBookshelf={AddToBookshelfHandler}
         />
       )}
-      <Bookshelf books={DUMMY_BOOKS} />
+      <Bookshelf books={bookshelfBooks} />
     </div>
   );
 }

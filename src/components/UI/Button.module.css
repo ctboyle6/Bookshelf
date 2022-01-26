@@ -1,5 +1,6 @@
 .button {
   font: inherit;
+  font-size: 0.9rem;
   cursor: pointer;
   background-color: #2c962c;
   border: 1px solid #2c962c;

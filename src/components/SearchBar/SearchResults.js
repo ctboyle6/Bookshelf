@@ -2,10 +2,16 @@ import React from "react";
 import Modal from "../UI/Modal";
 import Card from "../UI/Card";
 import classes from "./SearchResults.module.css";
+import Button from "../UI/Button";
 
 const SearchResults = (props) => {
   const onCloseModal = () => {
     props.onCloseModal();
+  };
+
+  const addBookHandler = event => {
+    const bookId = (event.target.parentElement.attributes.bookid.value)
+    props.onAddToBookshelf(bookId)
   };
 
   return (
@@ -13,9 +19,9 @@ const SearchResults = (props) => {
       {props.searchBooks.map((book) => {
         return (
           <Card key={book.id} className={classes.result}>
-            <div className={classes.left}>
+            <div className={classes.left} bookid={book.id}>
               <img src={book.bookCover} alt={`book cover for ${book.title}`} />
-              <button>Add to bookshelf</button>
+              <Button onClick={addBookHandler}>Add to bookshelf</Button>
             </div>
             <div className={classes.right}>
               <h2>{book.title}</h2>
