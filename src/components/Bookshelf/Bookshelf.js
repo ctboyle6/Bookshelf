@@ -3,6 +3,10 @@ import Book from "./Book";
 import classes from "./Bookshelf.module.css";
 
 const Bookshelf = (props) => {
+  const removeBookHandler = (removeBookId) => {
+    props.onRemoveBook(removeBookId);
+  };
+
   return (
     <div className={classes.bookshelf}>
       <div className={classes.row}>
@@ -10,9 +14,11 @@ const Bookshelf = (props) => {
           return (
             <Book
               key={book.id}
+              id={book.id}
               title={book.title}
               pages={book.pageCount}
               bookCover={book.bookCover}
+              onRemoveBook={removeBookHandler}
             />
           );
         })}

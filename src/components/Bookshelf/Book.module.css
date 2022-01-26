@@ -1,4 +1,5 @@
 .book {
+  position: relative;
   border: 1px dotted lightgray;
   height: 80px;
   display: flex;
@@ -15,4 +16,15 @@
 
 .book:hover {
   height: 200px;
+}
+
+.button {
+  position: absolute;
+  bottom: 0;
+  opacity: 30%;
+  transition: opacity 0.08s ease-in-out;
+}
+
+.button:hover {
+  opacity: 95%
 }

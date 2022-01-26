@@ -73,6 +73,16 @@ function App() {
     setIsSearchModalOpen(false);
   };
 
+  const removeBookHandler = (removeBookId) => {
+    const postRemoveBooks = bookshelfBooks.filter(
+      (book) => book.id !== removeBookId
+    );
+
+    setBookshelfBooks(postRemoveBooks);
+
+    localStorage.setItem("bookshelfBooks", JSON.stringify(postRemoveBooks)); // update local storage
+  };
+
   return (
     <div className={classes.app}>
       <h1>Bookshelf</h1>
@@ -84,7 +94,7 @@ function App() {
           onAddToBookshelf={AddToBookshelfHandler}
         />
       )}
-      <Bookshelf books={bookshelfBooks} />
+      <Bookshelf books={bookshelfBooks} onRemoveBook={removeBookHandler} />
     </div>
   );
 }
