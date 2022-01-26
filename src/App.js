@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import classes from "./App.module.css";
 
@@ -6,45 +6,10 @@ import Bookshelf from "./components/Bookshelf/Bookshelf";
 import SearchBar from "./components/SearchBar/SearchBar";
 import SearchResults from "./components/SearchBar/SearchResults";
 
-// const DUMMY_BOOKS = [
-//   {
-//     id: 1,
-//     title: "book1",
-//     pageCount: 100,
-//     bookCover: "../public/logo512.png",
-//   },
-//   {
-//     id: 2,
-//     title: "book2",
-//     pageCount: 200,
-//     bookCover: "../public/logo512.png",
-//   },
-//   {
-//     id: 3,
-//     title: "book3",
-//     pageCount: 300,
-//     bookCover: "../public/logo512.png",
-//   },
-//   {
-//     id: 4,
-//     title: "book4",
-//     pageCount: 400,
-//     bookCover: "../public/logo512.png",
-//   },
-// ];
-
 function App() {
   const [searchBooks, setSearchBooks] = useState([]);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
-  const [bookshelfBooks, setBookshelfBooks] = useState([
-    {
-      id: 1,
-      title: "book1",
-      pageCount: 300,
-      bookCover:
-        "http://books.google.com/books/content?id=XiAYDAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-    },
-  ]);
+  const [bookshelfBooks, setBookshelfBooks] = useState([]);
   // const [error, setError] = useState(null);
 
   const fetchBooks = async (searchInput) => {
@@ -80,6 +45,14 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    if (JSON.stringify(localStorage.getItem("bookshelfBooks")) === 'null') {
+      return
+    }
+      setBookshelfBooks(JSON.parse(localStorage.getItem("bookshelfBooks"))); // initial local storage load
+  }, []);
+
+
   const searchSubmitHandler = (enteredText) => {
     fetchBooks(enteredText);
   };
@@ -91,7 +64,12 @@ function App() {
   const AddToBookshelfHandler = (bookId) => {
     const selectedBook = searchBooks.find(book => book.id === bookId);
 
-    setBookshelfBooks(prevBooks => [...prevBooks, selectedBook]);
+    setBookshelfBooks(prevBooks => {
+      const updatedBooks = [...prevBooks, selectedBook];
+      localStorage.setItem("bookshelfBooks", JSON.stringify(updatedBooks)); // update local storage
+      return updatedBooks;
+    });
+
     setIsSearchModalOpen(false);
   };
 
