@@ -10,7 +10,7 @@ const Bookshelf = (props) => {
           return (
             <Book
               key={book.id}
-              name={book.title}
+              title={book.title}
               pages={book.pageCount}
               bookCover={book.bookCover}
             />

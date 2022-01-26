@@ -91,7 +91,6 @@ function App() {
   const AddToBookshelfHandler = (bookId) => {
     const selectedBook = searchBooks.find(book => book.id === bookId);
 
-    console.log(selectedBook);
     setBookshelfBooks(prevBooks => [...prevBooks, selectedBook]);
     setIsSearchModalOpen(false);
   };
