@@ -1,29 +1,83 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import Book from "./Book";
 import classes from "./Bookshelf.module.css";
 
 const Bookshelf = (props) => {
+  const [bookRows, setBookRows] = useState([]);
+
   const removeBookHandler = (removeBookId) => {
     props.onRemoveBook(removeBookId);
   };
 
+  /* when props.books changes..
+    - slice large ray into size-5 smaller arrays
+    - loop over smaller arrays > create rows
+    - map over small array > return books
+  */
+
+  useEffect(() => {
+    const perChunk = 5; // items per row
+
+    const result = props.books.reduce((resultArray, item, index) => {
+      const chunkIndex = Math.floor(index / perChunk);
+
+      if (!resultArray[chunkIndex]) {
+        resultArray[chunkIndex] = []; // start a new row
+      }
+
+      resultArray[chunkIndex].push(item);
+
+      return resultArray;
+    }, []);
+
+    setBookRows(result);
+  }, [props.books]);
+
+  const buildRow = (row) => {
+    const rowContents = row.map((book) => {
+      return (
+        <Book
+          key={book.id}
+          id={book.id}
+          title={book.title}
+          pages={book.pageCount}
+          bookCover={book.bookCover}
+          onRemoveBook={removeBookHandler}
+        />
+      );
+    });
+
+    return <div key={Math.random()} className={classes.row}>{rowContents}</div>;
+  };
+
+  let renderRows;
+  if (bookRows.length === 0) {
+    renderRows = <p className={classes["empty-row"]}>Try adding some books!</p>;
+  } else {
+    renderRows = bookRows.map(row => {
+      return buildRow(row)
+    })
+  }
+
+  // if (props.books.length === 0) {
+  // } else {
+  //   renderRows = props.books.map((book) => {
+  //     return (
+  //       <Book
+  //         key={book.id}
+  //         id={book.id}
+  //         title={book.title}
+  //         pages={book.pageCount}
+  //         bookCover={book.bookCover}
+  //         onRemoveBook={removeBookHandler}
+  //       />
+  //     );
+  //   });
+  // }
+
   return (
     <div className={classes.bookshelf}>
-      <div className={classes.row}>
-        {props.books.map((book) => {
-          return (
-            <Book
-              key={book.id}
-              id={book.id}
-              title={book.title}
-              pages={book.pageCount}
-              bookCover={book.bookCover}
-              onRemoveBook={removeBookHandler}
-            />
-          );
-        })}
-      </div>
-      <div className={classes.row}>THIS IS A ROW</div>
+      <div>{renderRows}</div>
     </div>
   );
 };

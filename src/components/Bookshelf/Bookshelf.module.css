@@ -8,3 +8,7 @@
   border-bottom: 1px solid grey;
   display: flex;
 }
+
+.empty-row {
+  font-weight: bold;
+}
