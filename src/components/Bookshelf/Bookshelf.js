@@ -9,12 +9,6 @@ const Bookshelf = (props) => {
     props.onRemoveBook(removeBookId);
   };
 
-  /* when props.books changes..
-    - slice large ray into size-5 smaller arrays
-    - loop over smaller arrays > create rows
-    - map over small array > return books
-  */
-
   useEffect(() => {
     const perChunk = 5; // items per row
 
@@ -47,33 +41,21 @@ const Bookshelf = (props) => {
       );
     });
 
-    return <div key={Math.random()} className={classes.row}>{rowContents}</div>;
+    return (
+      <div key={Math.random()} className={classes.row}>
+        {rowContents}
+      </div>
+    );
   };
 
   let renderRows;
   if (bookRows.length === 0) {
     renderRows = <p className={classes["empty-row"]}>Try adding some books!</p>;
   } else {
-    renderRows = bookRows.map(row => {
-      return buildRow(row)
-    })
+    renderRows = bookRows.map((row) => {
+      return buildRow(row);
+    });
   }
-
-  // if (props.books.length === 0) {
-  // } else {
-  //   renderRows = props.books.map((book) => {
-  //     return (
-  //       <Book
-  //         key={book.id}
-  //         id={book.id}
-  //         title={book.title}
-  //         pages={book.pageCount}
-  //         bookCover={book.bookCover}
-  //         onRemoveBook={removeBookHandler}
-  //       />
-  //     );
-  //   });
-  // }
 
   return (
     <div className={classes.bookshelf}>

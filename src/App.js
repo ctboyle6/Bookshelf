@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 
 import classes from "./App.module.css";
 
 import Bookshelf from "./components/Bookshelf/Bookshelf";
 import SearchBar from "./components/SearchBar/SearchBar";
 import SearchResults from "./components/SearchBar/SearchResults";
+import Sidebar from "./components/UI/Sidebar";
 
 function App() {
   const [searchBooks, setSearchBooks] = useState([]);
@@ -84,18 +85,27 @@ function App() {
   };
 
   return (
-    <div className={classes.app}>
-      <h1>Bookshelf</h1>
-      <SearchBar onSubmitSearch={searchSubmitHandler} />
-      {isSearchModalOpen && (
-        <SearchResults
-          searchBooks={searchBooks}
-          onCloseModal={closeModalHandler}
-          onAddToBookshelf={AddToBookshelfHandler}
-        />
-      )}
-      <Bookshelf books={bookshelfBooks} onRemoveBook={removeBookHandler} />
-    </div>
+    <Fragment>
+      <Sidebar width={300} height={"100vh"}>
+        <h1>Nav Item</h1>
+        <h1>Nav Item</h1>
+        <h1>Nav Item</h1>
+        <h1>Nav Item</h1>
+        <h1>Nav Item</h1>
+      </Sidebar>
+      <div className={classes.app}>
+        <h1>Bookshelf</h1>
+        <SearchBar onSubmitSearch={searchSubmitHandler} />
+        {isSearchModalOpen && (
+          <SearchResults
+            searchBooks={searchBooks}
+            onCloseModal={closeModalHandler}
+            onAddToBookshelf={AddToBookshelfHandler}
+          />
+        )}
+        <Bookshelf books={bookshelfBooks} onRemoveBook={removeBookHandler} />
+      </div>
+    </Fragment>
   );
 }
 
