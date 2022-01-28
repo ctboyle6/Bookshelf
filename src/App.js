@@ -87,11 +87,9 @@ function App() {
   return (
     <Fragment>
       <Sidebar width={300} height={"100vh"}>
-        <h1>Nav Item</h1>
-        <h1>Nav Item</h1>
-        <h1>Nav Item</h1>
-        <h1>Nav Item</h1>
-        <h1>Nav Item</h1>
+        <h3>Rearrange Books</h3>
+        <h3>Filter Books</h3>
+        <h3>Where Are My Books?</h3>
       </Sidebar>
       <div className={classes.app}>
         <h1>Bookshelf</h1>

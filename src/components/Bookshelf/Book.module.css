@@ -3,6 +3,7 @@
   border: 1px dotted lightgray;
   height: 80px;
   display: flex;
+  margin-top: 18px;
   justify-content: center;
   transition: all 0.5s;
   background-color: white

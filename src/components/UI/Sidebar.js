@@ -12,10 +12,6 @@ const Sidebar = ({ width, height, children }) => {
     }
   };
 
-  React.useEffect(() => {
-    setXPosition(0);
-  }, []);
-
   return (
     <React.Fragment>
       <div
@@ -27,7 +23,7 @@ const Sidebar = ({ width, height, children }) => {
         }}
       >
         <button
-          onClick={() => toggleMenu()}
+          onClick={toggleMenu}
           className={classes["toggle-menu"]}
           style={{
             transform: `translate(${width}px, 20vh)`,

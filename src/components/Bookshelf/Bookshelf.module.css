@@ -1,12 +1,9 @@
 .bookshelf {
-  display: inline-block;
-  width: 70vh;
-}
-
-.row {
-  margin: 16px;
-  border-bottom: 1px solid grey;
+  margin: 0 auto;
+  padding: 12px 60px;
+  min-width: 70vh;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .empty-row {
