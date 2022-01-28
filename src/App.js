@@ -22,7 +22,7 @@ function App() {
         )}`
       );
       if (!searchResponse.ok) {
-        throw new Error()
+        throw new Error();
       }
 
       const dataResponse = await searchResponse.json();
@@ -34,7 +34,7 @@ function App() {
           authors: bookData.volumeInfo.authors,
           description: bookData.volumeInfo.description,
           pageCount: bookData.volumeInfo.pageCount,
-          bookCover: bookData.volumeInfo.imageLinks.thumbnail
+          bookCover: bookData.volumeInfo.imageLinks.thumbnail,
         };
       });
       setSearchBooks(transformedBooks);
@@ -42,17 +42,16 @@ function App() {
       setIsSearchModalOpen(true);
     } catch (err) {
       // setError(err);
-      alert(err.message + ' \nPlease try another search query.');
+      alert(err.message + " \nPlease try another search query.");
     }
   };
 
   useEffect(() => {
-    if (JSON.stringify(localStorage.getItem("bookshelfBooks")) === 'null') {
-      return
+    if (JSON.stringify(localStorage.getItem("bookshelfBooks")) === "null") {
+      return;
     }
-      setBookshelfBooks(JSON.parse(localStorage.getItem("bookshelfBooks"))); // initial local storage load
+    setBookshelfBooks(JSON.parse(localStorage.getItem("bookshelfBooks"))); // initial local storage load
   }, []);
-
 
   const searchSubmitHandler = (enteredText) => {
     fetchBooks(enteredText);
@@ -63,9 +62,9 @@ function App() {
   };
 
   const AddToBookshelfHandler = (bookId) => {
-    const selectedBook = searchBooks.find(book => book.id === bookId);
+    const selectedBook = searchBooks.find((book) => book.id === bookId);
 
-    setBookshelfBooks(prevBooks => {
+    setBookshelfBooks((prevBooks) => {
       const updatedBooks = [...prevBooks, selectedBook];
       localStorage.setItem("bookshelfBooks", JSON.stringify(updatedBooks)); // update local storage
       return updatedBooks;
@@ -84,6 +83,21 @@ function App() {
     localStorage.setItem("bookshelfBooks", JSON.stringify(postRemoveBooks)); // update local storage
   };
 
+  const reorderBookshelfBooks = () => {
+    const booksDiv = document.getElementById("bookshelf-sortable");
+    const newBookIdOrder = [...booksDiv.children].map(
+      (book) => book.attributes.bookid.value
+    );
+
+    const sortedBooks = bookshelfBooks.slice().sort(function (a, b) {
+      return newBookIdOrder.indexOf(a.id) - newBookIdOrder.indexOf(b.id);
+    });
+
+    setBookshelfBooks(sortedBooks);
+
+    localStorage.setItem("bookshelfBooks", JSON.stringify(sortedBooks)); // update local storage
+  };;
+
   return (
     <Fragment>
       <Sidebar width={300} height={"100vh"}>
@@ -101,7 +115,11 @@ function App() {
             onAddToBookshelf={AddToBookshelfHandler}
           />
         )}
-        <Bookshelf books={bookshelfBooks} onRemoveBook={removeBookHandler} />
+        <Bookshelf
+          books={bookshelfBooks}
+          onRemoveBook={removeBookHandler}
+          onBookReorder={reorderBookshelfBooks}
+        />
       </div>
     </Fragment>
   );

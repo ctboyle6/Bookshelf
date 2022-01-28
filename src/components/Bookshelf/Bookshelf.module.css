@@ -1,7 +1,7 @@
 .bookshelf {
   margin: 0 auto;
-  padding: 12px 60px;
-  min-width: 70vh;
+  padding: 12px 14px;
+  min-width: 90vh;
   display: flex;
   flex-wrap: wrap;
 }

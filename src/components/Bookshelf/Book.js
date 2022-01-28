@@ -3,19 +3,33 @@ import Button from '../UI/Button';
 import classes from './Book.module.css'
 
 const Book = (props) => {
-  const [bookWidth, setBookWidth] = useState(`${props.pages * 0.3}px`);
+  const pageWidthControl = props.pages * 0.2;
+
+  const [bookWidth, setBookWidth] = useState(`${pageWidthControl}px`);
   const [bookFocused, setBookFocused] = useState(false);
 
-  const expandedWidth = Math.max(120, props.pages * 0.3)
+  const expandedWidth = Math.max(120, pageWidthControl)
 
   const mouseEnterHandler = (event) => {
+    if (event.target.parentElement.getAttribute('draggable') === false) {
+      return
+    };
+
     setBookWidth(`${expandedWidth}px`);
     setBookFocused(true);
   };
 
   const mouseLeaveHandler = () => {
-    setBookWidth(`${props.pages * 0.3}px`);
+    setBookWidth(`${pageWidthControl}px`);
     setBookFocused(false);
+  };
+
+  // const dragoverHandler = event => {
+  //   console.log("Dragover: " + event)
+  // };
+
+  const dropHandler = event => {
+    props.onBookDrop();
   };
 
   const removeBookClickHandler = event => {
@@ -32,6 +46,8 @@ const Book = (props) => {
       bookid={props.id}
       onMouseEnter={mouseEnterHandler}
       onMouseLeave={mouseLeaveHandler}
+      // onDragOver={dragoverHandler}
+      onDrop={dropHandler}
     >
       <img src={props.bookCover} alt="book cover" />
       {bookFocused && <Button className={classes.button} onClick={removeBookClickHandler}>Remove</Button>}

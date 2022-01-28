@@ -11,13 +11,16 @@ const Bookshelf = (props) => {
 
     Sortable.create(shelfSortable, {
       animation: 300,
-      dragClass: "sortable-drag",
     });
   }, []);
 
 
   const removeBookHandler = (removeBookId) => {
     props.onRemoveBook(removeBookId);
+  };
+
+  const bookDropHandler = () => {
+    props.onBookReorder();
   };
 
   const buildRows = (books) => {
@@ -30,6 +33,7 @@ const Bookshelf = (props) => {
           pages={book.pageCount}
           bookCover={book.bookCover}
           onRemoveBook={removeBookHandler}
+          onBookDrop={bookDropHandler}
         />
       );
     });
