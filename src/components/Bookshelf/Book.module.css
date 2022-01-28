@@ -5,7 +5,8 @@
   display: flex;
   margin-top: 18px;
   justify-content: center;
-  transition: all 0.5s;
+  transition: opacity 0.5s;
+  transition: height 0.5s;
   background-color: white
 }
 

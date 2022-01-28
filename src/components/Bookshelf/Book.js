@@ -8,7 +8,7 @@ const Book = (props) => {
 
   const expandedWidth = Math.max(120, props.pages * 0.3)
 
-  const mouseEnterHandler = () => {
+  const mouseEnterHandler = (event) => {
     setBookWidth(`${expandedWidth}px`);
     setBookFocused(true);
   };
@@ -18,7 +18,7 @@ const Book = (props) => {
     setBookFocused(false);
   };
 
-  const removeClickHandler = event => {
+  const removeBookClickHandler = event => {
     const removeBookId = event.target.parentElement.attributes.bookid.value;
     props.onRemoveBook(removeBookId);
   };
@@ -34,7 +34,7 @@ const Book = (props) => {
       onMouseLeave={mouseLeaveHandler}
     >
       <img src={props.bookCover} alt="book cover" />
-      {bookFocused && <Button className={classes.button} onClick={removeClickHandler}>Remove</Button>}
+      {bookFocused && <Button className={classes.button} onClick={removeBookClickHandler}>Remove</Button>}
     </div>
   );
 };

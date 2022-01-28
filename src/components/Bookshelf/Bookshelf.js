@@ -1,8 +1,21 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+
 import Book from "./Book";
 import classes from "./Bookshelf.module.css";
 
+import Sortable from "sortablejs";
+
 const Bookshelf = (props) => {
+  useEffect(() => {
+    const shelfSortable = document.getElementById("bookshelf-sortable");
+
+    Sortable.create(shelfSortable, {
+      animation: 300,
+      dragClass: "sortable-drag",
+    });
+  }, []);
+
+
   const removeBookHandler = (removeBookId) => {
     props.onRemoveBook(removeBookId);
   };
@@ -30,7 +43,7 @@ const Bookshelf = (props) => {
   }
 
   return (
-    <div className={classes.bookshelf}>
+    <div id="bookshelf-sortable" className={classes.bookshelf}>
       {renderRows}
     </div>
   );
