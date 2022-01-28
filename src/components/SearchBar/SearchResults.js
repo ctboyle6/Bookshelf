@@ -9,9 +9,9 @@ const SearchResults = (props) => {
     props.onCloseModal();
   };
 
-  const addBookHandler = event => {
-    const bookId = (event.target.parentElement.attributes.bookid.value)
-    props.onAddToBookshelf(bookId)
+  const addBookHandler = (event) => {
+    const bookId = event.target.parentElement.attributes.bookid.value;
+    props.onAddToBookshelf(bookId);
   };
 
   return (
@@ -21,7 +21,9 @@ const SearchResults = (props) => {
           <Card key={book.id} className={classes.result}>
             <div className={classes.left} bookid={book.id}>
               <img src={book.bookCover} alt={`book cover for ${book.title}`} />
-              <Button onClick={addBookHandler}>Add to bookshelf</Button>
+              <Button onClick={addBookHandler} disabled={book.isBookAdded}>
+                {book.isBookAdded ? "Added" : "Add to Bookshelf"}
+              </Button>
             </div>
             <div className={classes.right}>
               <h2>{book.title}</h2>

@@ -27,6 +27,8 @@ function App() {
 
       const dataResponse = await searchResponse.json();
 
+      const bookshelfBookIds = bookshelfBooks.map(book => book.id);
+
       const transformedBooks = dataResponse.items.map((bookData) => {
         return {
           id: bookData.id,
@@ -35,6 +37,7 @@ function App() {
           description: bookData.volumeInfo.description,
           pageCount: bookData.volumeInfo.pageCount,
           bookCover: bookData.volumeInfo.imageLinks.thumbnail,
+          isBookAdded: bookshelfBookIds.includes(bookData.id),
         };
       });
       setSearchBooks(transformedBooks);
