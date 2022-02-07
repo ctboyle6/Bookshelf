@@ -1,0 +1,41 @@
+.result {
+  margin: 32px;
+  display: flex;
+}
+
+.left {
+  align-items: center;
+  margin: auto 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.left img {
+  margin: 12px auto;
+}
+
+.right p {
+  max-height: 300px;
+  overflow: auto;
+  font-size: 0.8rem;
+}
+
+.form-controls {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 12px 0;
+}
+
+.form-controls input {
+  margin: 8px 0;
+  border: 1px lightgray solid;
+  border-radius: 4px;
+  padding: 0.2rem;
+}
+
+.form-controls label {
+  margin: 2px 0;
+  font-size: 0.9rem;
+  font-family: sans-serif;
+}

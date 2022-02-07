@@ -18,11 +18,7 @@
 
 .book:hover {
   height: 200px;
-  cursor: grab
-}
-
-.book:active {
-  cursor: grabbing;
+  cursor: pointer
 }
 
 .button {

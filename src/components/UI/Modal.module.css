@@ -13,8 +13,8 @@
   top: 20vh;
   left: 5%;
   width: 90%;
-  height: 80%;
-  overflow: scroll;
+  height: 70%;
+  overflow-y: scroll;
   background-color: rgba(252, 252, 252, 0.705);
   padding: 1rem;
   border-radius: 14px;

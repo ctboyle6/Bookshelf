@@ -28,6 +28,10 @@ const Book = (props) => {
   //   console.log("Dragover: " + event)
   // };
 
+  const clickHandler = event => {
+    props.onOpenBook(event.target.parentElement.attributes.bookid.value);
+  };
+
   const dropHandler = event => {
     props.onBookDrop();
   };
@@ -47,6 +51,7 @@ const Book = (props) => {
       onMouseEnter={mouseEnterHandler}
       onMouseLeave={mouseLeaveHandler}
       // onDragOver={dragoverHandler}
+      onClick={clickHandler}
       onDrop={dropHandler}
     >
       <img src={props.bookCover} alt="book cover" />
