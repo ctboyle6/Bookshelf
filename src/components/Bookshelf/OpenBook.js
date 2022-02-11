@@ -24,6 +24,13 @@ const OpenBook = (props) => {
     setFormLocked(prevState => !prevState);
   };
 
+  const removeBookClickHandler = (event) => {
+    event.preventDefault();
+    const removeBookId = props.openBook.id;
+    props.onRemoveBook(removeBookId);
+    props.onCloseBook();
+  };
+
   return (
     <Modal onCloseModal={closeBookHandler}>
       <Card className={classes.result}>
@@ -58,7 +65,12 @@ const OpenBook = (props) => {
             <input type="text" id="shared-with" disabled={formLocked} />
           </div>
           <div className="form-actions">
-            <Button onClick={clickSaveHandler}>{formLocked ? 'Edit' : 'Save'}</Button>
+            <Button onClick={clickSaveHandler}>
+              {formLocked ? "Edit" : "Save"}
+            </Button>
+            <Button onClick={removeBookClickHandler}>
+              Remove
+            </Button>
           </div>
         </form>
       </Card>

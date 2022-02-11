@@ -1,12 +1,10 @@
 import { useState } from 'react';
-import Button from '../UI/Button';
 import classes from './Book.module.css'
 
 const Book = (props) => {
   const pageWidthControl = props.pages * 0.2;
 
   const [bookWidth, setBookWidth] = useState(`${pageWidthControl}px`);
-  const [bookFocused, setBookFocused] = useState(false);
 
   const expandedWidth = Math.max(120, pageWidthControl)
 
@@ -16,12 +14,10 @@ const Book = (props) => {
     };
 
     setBookWidth(`${expandedWidth}px`);
-    setBookFocused(true);
   };
 
   const mouseLeaveHandler = () => {
     setBookWidth(`${pageWidthControl}px`);
-    setBookFocused(false);
   };
 
   // const dragoverHandler = event => {
@@ -34,11 +30,6 @@ const Book = (props) => {
 
   const dropHandler = event => {
     props.onBookDrop();
-  };
-
-  const removeBookClickHandler = event => {
-    const removeBookId = event.target.parentElement.attributes.bookid.value;
-    props.onRemoveBook(removeBookId);
   };
 
   return (
@@ -55,7 +46,6 @@ const Book = (props) => {
       onDrop={dropHandler}
     >
       <img src={props.bookCover} alt="book cover" />
-      {bookFocused && <Button className={classes.button} onClick={removeBookClickHandler}>Remove</Button>}
     </div>
   );
 };

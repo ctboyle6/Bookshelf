@@ -46,7 +46,6 @@ const Bookshelf = (props) => {
           title={book.title}
           pages={book.pageCount}
           bookCover={book.bookCover}
-          onRemoveBook={removeBookHandler}
           onBookDrop={bookDropHandler}
           onOpenBook={openBookHandler}
         />
@@ -68,6 +67,7 @@ const Bookshelf = (props) => {
         <OpenBook
           openBook={openBook}
           onCloseBook={closeBookHandler}
+          onRemoveBook={removeBookHandler}
         ></OpenBook>
       )}
     </div>

@@ -20,14 +20,3 @@
   height: 200px;
   cursor: pointer
 }
-
-.button {
-  position: absolute;
-  bottom: 0;
-  opacity: 30%;
-  transition: opacity 0.08s ease-in-out;
-}
-
-.button:hover {
-  opacity: 95%
-}
