@@ -39,6 +39,7 @@
   border: 1px lightgray solid;
   border-radius: 4px;
   padding: 0.2rem;
+  text-align: end;
 }
 
 .form-controls label {

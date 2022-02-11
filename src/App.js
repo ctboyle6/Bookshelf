@@ -38,6 +38,9 @@ function App() {
           pageCount: bookData.volumeInfo.pageCount,
           bookCover: bookData.volumeInfo.imageLinks.thumbnail,
           isBookAdded: bookshelfBookIds.includes(bookData.id),
+          userRating: 0,
+          userSharedWith: null,
+          userDateRead: null,
         };
       });
       setSearchBooks(transformedBooks);
