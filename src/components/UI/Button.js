@@ -12,6 +12,10 @@ const Button = (props) => {
       disabled={props.disabled}
       type={props.type}
       onClick={props.onClick}
+      style={{
+        backgroundColor: props.color || "",
+        borderColor: props.color || "",
+      }}
     >
       {props.children}
     </button>

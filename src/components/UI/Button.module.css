@@ -2,8 +2,8 @@
   font: inherit;
   font-size: 0.9rem;
   cursor: pointer;
-  background-color: #2c962c;
-  border: 1px solid #2c962c;
+  background-color: #1cc41c;
+  border: 1px solid #1cc41c;
   color: white;
   padding: 0.25rem 1.2rem;
   border-radius: 12px;
@@ -13,8 +13,7 @@
 
 .button:hover,
 .button:active {
-  background-color: #30a830;
-  border-color: #30a830;
+  filter: brightness(120%);
 }
 
 .button:disabled,

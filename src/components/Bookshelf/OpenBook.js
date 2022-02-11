@@ -64,11 +64,11 @@ const OpenBook = (props) => {
             <label htmlFor="shared-with">Shared With: </label>
             <input type="text" id="shared-with" disabled={formLocked} />
           </div>
-          <div className="form-actions">
+          <div className={classes["form-actions"]}>
             <Button onClick={clickSaveHandler}>
               {formLocked ? "Edit" : "Save"}
             </Button>
-            <Button onClick={removeBookClickHandler}>
+            <Button onClick={removeBookClickHandler} color="#b91313">
               Remove
             </Button>
           </div>
