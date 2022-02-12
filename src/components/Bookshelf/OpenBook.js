@@ -21,7 +21,7 @@ const OpenBook = (props) => {
 
   const clickSaveHandler = (event) => {
     event.preventDefault();
-    setFormLocked(prevState => !prevState);
+    setFormLocked((prevState) => !prevState);
   };
 
   const removeBookClickHandler = (event) => {
@@ -30,6 +30,60 @@ const OpenBook = (props) => {
     props.onRemoveBook(removeBookId);
     props.onCloseBook();
   };
+
+  let formData;
+  if (formLocked === false) {
+    formData = (
+        <form className={classes.bottom}>
+          <div className={classes["form-controls"]}>
+            <label htmlFor="date-finished">Date Finished: </label>
+            <input type="date" id="date-finished" disabled={formLocked} />
+            <label htmlFor="rating">
+              Rating: <span ref={ratingValue}></span>
+            </label>
+            <input
+              type="range"
+              id="rating"
+              min="0.5"
+              max="5"
+              step="0.5"
+              onChange={changeRatingHandler}
+              disabled={formLocked}
+            />
+            <label htmlFor="shared-with">Shared With: </label>
+            <input type="text" id="shared-with" disabled={formLocked} />
+          </div>
+          <div className={classes["form-actions"]}>
+            <Button onClick={clickSaveHandler}>
+              {formLocked ? "Edit" : "Save"}
+            </Button>
+            <Button onClick={removeBookClickHandler} color="#b91313">
+              Remove
+            </Button>
+          </div>
+        </form>
+    );
+  } else {
+    formData = (
+      <div className={classes.bottom}>
+        <div className={classes["form-controls"]}>
+          <label htmlFor="date-finished">Date Finished: {props.userDateRead}</label>
+          <label htmlFor="rating">
+            Rating: <span ref={ratingValue}>{props.userRating}</span>
+          </label>
+          <label htmlFor="shared-with">Shared With: {props.userSharedWith}</label>
+        </div>
+        <div className={classes["form-actions"]}>
+          <Button onClick={clickSaveHandler}>
+            {formLocked ? "Edit" : "Save"}
+          </Button>
+          <Button onClick={removeBookClickHandler} color="#b91313">
+            Remove
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <Modal onCloseModal={closeBookHandler}>
